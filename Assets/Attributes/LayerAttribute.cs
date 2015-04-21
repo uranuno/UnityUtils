@@ -9,9 +9,13 @@ public class LayerAttribute : PropertyAttribute {}
 [CustomPropertyDrawer(typeof(LayerAttribute))]
 public class LayerDrawer : PropertyDrawer {
 
-	public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
+	public override void OnGUI(Rect position, SerializedProperty prop, GUIContent label) {
 
-		property.intValue = EditorGUI.LayerField(position, label, property.intValue);
+		EditorGUI.BeginProperty (position, label, prop);
+
+		prop.intValue = EditorGUI.LayerField(position, label, prop.intValue);
+
+		EditorGUI.EndProperty ();
 	}
 }
 #endif

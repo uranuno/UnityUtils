@@ -9,9 +9,13 @@ public class TagAttribute : PropertyAttribute {}
 [CustomPropertyDrawer(typeof(TagAttribute))]
 public class TagDrawer : PropertyDrawer {
 
-	public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
+	public override void OnGUI(Rect position, SerializedProperty prop, GUIContent label) {
 
-		property.stringValue = EditorGUI.TagField(position, label, property.stringValue);
+		EditorGUI.BeginProperty (position, label, prop);
+
+		prop.stringValue = EditorGUI.TagField(position, label, prop.stringValue);
+
+		EditorGUI.EndProperty ();
 	}
 }
 #endif
