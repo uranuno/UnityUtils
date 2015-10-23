@@ -126,7 +126,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherValue: 4.19999981
-  randomDelayRange: {x: 2.5, y: 8}
+  delayMinMax:
+    min: 2.5
+    max: 8
 --- !u!114 &102142812
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,6 +3,20 @@
 using UnityEditor;
 #endif
 
+[System.Serializable]
+public struct MinMax {
+
+	public float min;
+	public float max;
+
+	public float randomValue { get { return Random.Range(min, max); } }
+
+	public MinMax (float min, float max) {
+		this.min = min;
+		this.max = max;
+	}
+}
+
 public class MinMaxRangeAttribute : PropertyAttribute {
 	
 	public float minLimit;
@@ -33,18 +47,21 @@ public class MinMaxRangeDrawer : PropertyDrawer {
 		Rect minRect 	= new Rect (position.x, position.y, numWidth, position.height);
 		Rect sliderRect = new Rect (minRect.x + minRect.width + padding, position.y, position.width - numWidth*2 - padding*2, position.height);
 		Rect maxRect 	= new Rect (sliderRect.x + sliderRect.width + padding, position.y, numWidth, position.height);
-		
-		float min = prop.vector2Value.x;
-		float max = prop.vector2Value.y;
+
+		SerializedProperty minProp = prop.FindPropertyRelative("min");
+		SerializedProperty maxProp = prop.FindPropertyRelative("max");
+
+		float min = minProp.floatValue;
+		float max = maxProp.floatValue;
 		float minLimit = minMaxAttribute.minLimit;
 		float maxLimit = minMaxAttribute.maxLimit;
-		
+
 		min = Mathf.Clamp(EditorGUI.FloatField (minRect, min), minLimit, max);
 		max = Mathf.Clamp(EditorGUI.FloatField (maxRect, max), min, maxLimit);
-		
 		EditorGUI.MinMaxSlider (sliderRect, ref min, ref max, minLimit, maxLimit);
-		
-		prop.vector2Value = new Vector2(min, max);
+
+		minProp.floatValue = min;
+		maxProp.floatValue = max;
 		
 		EditorGUI.EndProperty ();
 	}

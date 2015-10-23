@@ -6,9 +6,7 @@ public class MinMaxRangeExample : MonoBehaviour {
 	public float otherValue;
 
 	[SerializeField, MinMaxRange(0,10f)]
-	Vector2 randomDelayRange;
-	
-	float randomDelay { get { return Random.Range(randomDelayRange.x, randomDelayRange.y); } }
+	MinMax delayMinMax;
 	
 	float delay;
 	float accum;
@@ -20,7 +18,7 @@ public class MinMaxRangeExample : MonoBehaviour {
 		if (accum >= delay) {
 			Debug.Log ("Fire!");
 			accum = 0;
-			delay = randomDelay;
+			delay = delayMinMax.randomValue;
 		}
 	}
 }
