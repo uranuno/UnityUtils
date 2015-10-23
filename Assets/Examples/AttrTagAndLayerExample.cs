@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class TagAndLayerExample : MonoBehaviour {
+public class AttrTagAndLayerExample : MonoBehaviour {
 
 	[Tag]
 	public string targetTag;

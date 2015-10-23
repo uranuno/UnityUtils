@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MinMaxRangeExample : MonoBehaviour {
+public class AttrMinMaxRangeExample : MonoBehaviour {
 
 	[Range(0,10f)]
 	public float otherValue;
