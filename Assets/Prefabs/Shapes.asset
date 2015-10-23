@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb2c3c9c9671444d0a68e40dbbf8400c, type: 3}
+  m_Name: Shapes
+  m_EditorClassIdentifier: 
+  comparisonType: 0
+  assetRefs:
+  - name: Cube
+    asset: {fileID: 185878, guid: 28f3e1b11c35e4594b38615880457dc2, type: 2}
+  - name: Sphere
+    asset: {fileID: 112246, guid: 0c53ada2af8054b12a449e1f3dea1665, type: 2}
+  altAssetNames:
+  - assetName: Shape-Cube
+    referenceName: Cube
+  - assetName: Shape-Sphere
+    referenceName: Sphere
