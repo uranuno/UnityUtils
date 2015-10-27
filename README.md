@@ -22,6 +22,19 @@ public int targetLayer;
 
 [SerializeField, MinMaxRange(0,10f)]
 MinMax randomDelayRange;
+
+float delay;
+float accum;
+
+void Update () {
+	accum += Time.deltaTime;
+
+	if (accum >= delay) {
+		Debug.Log ("Fire!");
+		accum = 0;
+		delay = randomDelayRange.randomValue;
+	}
+}
 ```
 
 ![Min Max Range Attribute](http://uranuno.github.io/MyUnityUtils/minmaxrange.gif)
