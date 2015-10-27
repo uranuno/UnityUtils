@@ -15,6 +15,10 @@ public struct MinMax {
 		this.min = min;
 		this.max = max;
 	}
+
+	public float Clamp(float value) {
+		return Mathf.Clamp(value, min, max);
+	}
 }
 
 public class MinMaxRangeAttribute : PropertyAttribute {
