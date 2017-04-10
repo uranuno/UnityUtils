@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// PlayerPrefsに保存したいデータのベースクラス。
+/// PlayerPrefsにオブジェクトを保存するためのヘルパー。
 /// Json文字列化して保存する。
 /// 保存キー = 型名になるので、1クラス1データ
 /// </summary>
-[System.Serializable]
-public abstract class PlayerPrefsData<T> where T : PlayerPrefsData<T>, new()
+public static class PlayerPrefsData
 {
 	/// <summary>
 	/// 保存キー取得
 	/// </summary>
-	static string GetKey ()
+	private static string GetKey<T> ()
 	{
 		return typeof(T).Name;
 	}
@@ -19,34 +18,39 @@ public abstract class PlayerPrefsData<T> where T : PlayerPrefsData<T>, new()
 	/// <summary>
 	/// すでに保存されているか
 	/// </summary>
-	public static bool isSaved
+	public static bool IsSaved<T> ()
 	{
-		get { return PlayerPrefs.HasKey (GetKey ()); }
+		return PlayerPrefs.HasKey (GetKey<T> ());
 	}
 
 	/// <summary>
-	/// 保存データの読み込み（データが無い場合は新規データを生成し保存する）
+	/// データの読み込み（データがなければ引数で渡したデータが返る）
 	/// </summary>
-	public static T Load ()
+	public static T Load<T> (T defaultData = default(T))
 	{
-		T loaded = new T();
-		if (!isSaved)
-			loaded.Save ();//新規データ保存
-		else
-		{
-			var json = PlayerPrefs.GetString (GetKey ());
-			JsonUtility.FromJsonOverwrite (json, loaded);
-		}
-		return loaded;
+		var json = PlayerPrefs.GetString (
+			GetKey<T> (),
+			JsonUtility.ToJson (defaultData)
+		);
+		var data = JsonUtility.FromJson<T> (json);
+		return data;
 	}
 
 	/// <summary>
 	/// データの保存
 	/// </summary>
-	public void Save ()
+	public static void Save<T> (T data)
 	{
-		var json = JsonUtility.ToJson (this);
-		PlayerPrefs.SetString (GetKey (), json);
+		var json = JsonUtility.ToJson (data);
+		PlayerPrefs.SetString (GetKey<T> (), json);
 		PlayerPrefs.Save ();
+	}
+
+	/// <summary>
+	/// データの削除
+	/// </summary>
+	public static void Delete<T> ()
+	{
+		PlayerPrefs.DeleteKey (GetKey<T> ());
 	}
 }
