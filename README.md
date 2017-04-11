@@ -1,4 +1,4 @@
-# MyUnityUtils
+# UnityUtils
 
 ## Tag and Layer Attribute
 [Assets/Utils/TagAttribute.cs](Assets/Utils/TagAttribute.cs)  
@@ -12,10 +12,10 @@ public string targetTag;
 public int targetLayer;
 ```
 
-![Tag And Layer Attribute](https://uranuno.github.io/MyUnityUtils/tagandlayer.png)
+![Tag And Layer Attribute](https://uranuno.github.io/UnityUtils/tagandlayer.png)
 
-![Tag And Layer Attribute - Tag](https://uranuno.github.io/MyUnityUtils/tagandlayer-tag.png)
-![Tag And Layer Attribute - Layer](https://uranuno.github.io/MyUnityUtils/tagandlayer-layer.png)
+![Tag And Layer Attribute - Tag](https://uranuno.github.io/UnityUtils/tagandlayer-tag.png)
+![Tag And Layer Attribute - Layer](https://uranuno.github.io/UnityUtils/tagandlayer-layer.png)
 
 
 ## Min Max
@@ -42,7 +42,7 @@ void Update () {
 }
 ```
 
-![Min Max Range Attribute](https://uranuno.github.io/MyUnityUtils/minmaxrange.gif)
+![Min Max Range Attribute](https://uranuno.github.io/UnityUtils/minmaxrange.gif)
 
 
 ## PlayerPrefs Data
@@ -88,4 +88,4 @@ void ResetData ()
 }
 ```
 
-![PlayerPrefs Data](https://uranuno.github.io/MyUnityUtils/playerprefsdata.png)
+![PlayerPrefs Data](https://uranuno.github.io/UnityUtils/playerprefsdata.png)
