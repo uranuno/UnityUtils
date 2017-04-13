@@ -5,31 +5,28 @@
 /// Json文字列化して保存する。
 /// 保存キー = 型名になるので、1クラス1データ
 /// </summary>
-public static class PlayerPrefsData
+public static class PlayerPrefsData<T>
 {
 	/// <summary>
-	/// 保存キー取得
+	/// 保存キー = 型名
 	/// </summary>
-	private static string GetKey<T> ()
-	{
-		return typeof(T).Name;
-	}
+	private static readonly string m_Key = typeof(T).Name;
 
 	/// <summary>
 	/// すでに保存されているか
 	/// </summary>
-	public static bool IsSaved<T> ()
+	public static bool IsSaved ()
 	{
-		return PlayerPrefs.HasKey (GetKey<T> ());
+		return PlayerPrefs.HasKey (m_Key);
 	}
 
 	/// <summary>
 	/// データの読み込み（データがなければ引数で渡したデータが返る）
 	/// </summary>
-	public static T Load<T> (T defaultData = default(T))
+	public static T Load (T defaultData = default(T))
 	{
 		var json = PlayerPrefs.GetString (
-			GetKey<T> (),
+			m_Key,
 			JsonUtility.ToJson (defaultData)
 		);
 		var data = JsonUtility.FromJson<T> (json);
@@ -39,18 +36,18 @@ public static class PlayerPrefsData
 	/// <summary>
 	/// データの保存
 	/// </summary>
-	public static void Save<T> (T data)
+	public static void Save (T data)
 	{
 		var json = JsonUtility.ToJson (data);
-		PlayerPrefs.SetString (GetKey<T> (), json);
+		PlayerPrefs.SetString (m_Key, json);
 		PlayerPrefs.Save ();
 	}
 
 	/// <summary>
 	/// データの削除
 	/// </summary>
-	public static void Delete<T> ()
+	public static void Delete ()
 	{
-		PlayerPrefs.DeleteKey (GetKey<T> ());
+		PlayerPrefs.DeleteKey (m_Key);
 	}
 }

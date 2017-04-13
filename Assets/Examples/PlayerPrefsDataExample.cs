@@ -30,7 +30,7 @@ public class PlayerPrefsDataExample : MonoBehaviour
 	void LoadData ()
 	{
 		// データの読込
-		var data = PlayerPrefsData.Load<AudioSettings> (
+		var data = PlayerPrefsData<AudioSettings>.Load (
 			//データが未保存の場合のデフォルト値
 			new AudioSettings ()
 		);
@@ -47,14 +47,14 @@ public class PlayerPrefsDataExample : MonoBehaviour
 		data.bgmVolume = m_BgmVolumeSlider.value;
 		data.seVolume = m_SeVolumeSlider.value;
 		// データの保存
-		PlayerPrefsData.Save<AudioSettings> (data);
+		PlayerPrefsData<AudioSettings>.Save (data);
 	}
 
 	// データのリセット
 	void ResetData ()
 	{
 		// データの削除
-		PlayerPrefsData.Delete<AudioSettings> ();
+		PlayerPrefsData<AudioSettings>.Delete ();
 		// データの再読み込み（デフォルト値になる）
 		LoadData ();
 	}

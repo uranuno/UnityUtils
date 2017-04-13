@@ -62,7 +62,7 @@ public class AudioSettings
 ```csharp
 void LoadData ()
 {
-	var data = PlayerPrefsData.Load<AudioSettings> (
+	var data = PlayerPrefsData<AudioSettings>.Load (
 		// Default Value
 		new AudioSettings ()
 	);
@@ -77,12 +77,12 @@ void SaveData ()
 	data.bgmVolume = m_BgmVolumeSlider.value;
 	data.seVolume = m_SeVolumeSlider.value;
 
-	PlayerPrefsData.Save<AudioSettings> (data);
+	PlayerPrefsData<AudioSettings>.Save (data);
 }
 
 void ResetData ()
 {
-	PlayerPrefsData.Delete<AudioSettings> ();
+	PlayerPrefsData<AudioSettings>.Delete ();
 	// Reload
 	LoadData ();
 }
